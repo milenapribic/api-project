@@ -4,50 +4,69 @@
 	<meta charset="UTF-8">
 	<title>innerloopersHTX</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="icon" href="images/favicon.ico">
-	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sofia|Cedarville+Cursive' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 	<header>
-	<h1><i class="fa fa-street-view"></i>innerLoopers <sub class= 'sub'>HTX</sub></h1>
+		<h1>innerLoopers<sub class= 'sub'>HTX</sub></h1>
+		<p class="directions"><span class="number">1.</span > Get your caffeine fix <span class="number">2.</span> Walk a randomly generated loop <span class="number">3.</span> Fix the city </p>
 	</header>
 	<main>
-		<div class="definitions">
-			<div class="interloperDefinition">
-				<h2>interloper:</h2>
-				<p class="pronunciation">[in-ter-loh-per]</p>
-				<p>a person who intrudes into a region, field, or sphere of activity without a proper license.</p>
-			</div>
-			<div class="innerlooperDefinition">
-				<h2>innerlooper:</h2>
-				<p class="pronunciation">[in-ner-looh-per]</p>
-				<p>a Houstonian who intrudes into a neighborhood or district with full right to explore and improve it. </p>
+		<div class="content">
+		
+			<div class="right">
+				<!-- <p>Pick your shop and route your walk.</p> -->
+					<div class="topButtons">
+						<button class="coffeeButton"><i class="fa fa-coffee"></i> Caffeinate</button>
+						<button class="clearButton"><i class="fa fa-refresh"></i> Refresh</button>
+					</div>
+				<div class="map-container"> <!-- relative -->
+					<div id="map-canvas"></div>
+						<div class="modal"> <!-- absolute -->
+							<a href="" class="close">&times;</a>
+							<h3 id='shop'>Name of Shop</h3> 
+							<img>
+							<p><button class="walkRoute"> Walk Around?</button></p>
+							<h5 class="rating"></h5>
+							<h5 class="website"></h5>
+						</div>
+					</div>
 				</div>
 			</div>
-		<p class="directions"><span>1</span> Get your caffeine fix <span>2</span> Walk a randomly generated loop <span>3</span> Fix the city </p>
-		<h3 id="shop">Choose a stop & choose a walk.</h3>
-		<div class="topButtons">
-			<button class="coffeeButton"><i class="fa fa-coffee"></i> Caffeinate</button>
-			<button class="clearButton"><i class="fa fa-refresh"></i> Refresh Map</button>
-		</div>
-	</main>
-	<div class="map-container"> <!-- relative -->
-		<div id="map-canvas"></div>
-			<div class="modal"> <!-- absolute -->
-				<a href="" class="close">&times;</a>
-				<h3 id='shop'>Name of Shop</h3> 
-				<img>
-				<p><button class="walkRoute"> Walk Around?</button></p>
-				<h5 class="rating"></h5>
-				<h5 class="website"></h5>
+				<div class="left">
+					<div class="image">
+						<img src="images/610loop.jpg" alt="610 loop" class="desaturate">
+					</div>
+				<div class="definitions">
+					<div class="interloper">
+						<h2>interloper:</h2>
+							<p class="pronunciation">[in-ter-loh-per]</p>
+							<p>a person who intrudes into a region, field, or sphere of activity without a proper license.</p>
+					</div>
+					<div class="innerlooper">
+						<h2>innerlooper:</h2>
+						<p class="pronunciation">[in-ner-looh-per]</p>
+						<p>a Houstonian who intrudes into a neighborhood or district with full right to explore and improve it. </p>
+					</div>
+				</div>
+				<div class="recommendations">
+					<h4>Like this thought?</h4>
+					<p>Please support these community groups!</p>
+					<ul>
+						<li><a href="">BikeHouston</a></li>
+						<li><a href="">Go Healthy Houston</a></li>
+						<li><a href="">Public Art Houston</a></li>
+						<li><a href="">SBDC</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>	
-	</div>
-	<p class="catchphrase">Support local businesses & promote walkability</p>
-	<h3 class="greeting"> Explore your city & get to know your city. </h3>
+	</main>
+	<p class="catchphrase">Support local businesses & promote walkability. <span class="bold">Explore your city & get to know your city.<span class="bold"></p>
 	<footer>
-		<p class="left">#innerloopershtx</li>
+		<p class="uppercase">Milena Was Here 2015 &copy;</p>
+		<p>#innerloopershtx</li>
 	</footer>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

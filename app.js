@@ -2,9 +2,9 @@
 //Global variables
 
 var app = {};
-
 var map;
 var houston = new google.maps.LatLng(29.747437, -95.367989);
+var center = houston;
 
 var MY_MAPTYPE_ID = 'custom_style';
 
@@ -236,9 +236,9 @@ function initialize() {
   var featureOpts = [
     {
       stylers: [
-        { hue: '#D4FFFF' },
+        { hue: '#fff' },
         { visibility: 'none' },
-        { gamma: 0.5 }
+        { gamma: .5 }
       ]
     },
     {
@@ -250,7 +250,7 @@ function initialize() {
     {
       featureType: 'water',
       stylers: [
-        { color: '#D4FFFF' }
+        { color: '#333' }
       ]
     },
     {
@@ -263,7 +263,7 @@ function initialize() {
   var mapOptions = {
     zoom: 12,
     center: houston,
-    styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}],
+    styles: featureOpts,
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
     },
@@ -274,7 +274,11 @@ function initialize() {
 
   var styledMapOptions = {
     name: 'Custom Style', 
-    styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
+    styles: [{ featureType: "poi", 
+    elementType: "labels", 
+    stylers: [{ 
+      visibility: "off" }]
+    }]
   };
 
   var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
@@ -383,6 +387,8 @@ var coordsAncira =
 
   //Route is created and modal disappears
   $('.walkRoute').on('click', function() {
+    center = map.whichShop;
+    console.log('center on calc', center);
     polygonCreate(map.whichCoords, map.whichShop);
     $('.modal').removeClass('show');
   });
@@ -425,10 +431,10 @@ var coordsAncira =
           location: point,
           stopover: false
         });
-       console.log(points);
-       if (google.maps.geometry.poly.containsLocation(point,polygon)) {
-         createMarker(map, point,"marker "+i);
-       }
+       // console.log(points);
+       // if (google.maps.geometry.poly.containsLocation(point,polygon)) {
+       //   createMarker(map, point,"marker "+i);
+       // }
 
     };
 
@@ -449,6 +455,7 @@ var coordsAncira =
       suppressInfoWindows: true});
       app.directionsDisplay.setMap(map);
     }
+
     initializeRoute();
 
     function calcRoute(specificOne) {
@@ -482,7 +489,13 @@ app.popUpEvents = function() {
 };
 
 app.popUp = function(place) {
-  var image = place.photos[0].getUrl({maxWidth: 400, maxHeight: 300});
+  var image;
+
+  if (!place.hasOwnProperty('photos')) {
+    image = "images/swirl_pattern.png";
+  } else {
+    image = place.photos[0].getUrl({maxWidth: 400, maxHeight: 300});
+  }
   console.log(place);
   var name = place.name;
   $('h3#shop').text(name);
@@ -491,7 +504,8 @@ app.popUp = function(place) {
       $('h5.website').text('Website: Unavailable');
     }
   $('h5.rating').text('User Rating: ' + place.rating);
-  $('.modal img').attr('src', image);
+    $('.modal img').attr('src', image);
+
   $('.modal').addClass('show'); 
   };
 
@@ -517,6 +531,10 @@ app.popUp = function(place) {
 app.init = function() {
   app.popUpEvents(); //called immediately 
   app.clearButton();
+  $(window).on('resize', function() {
+      console.log('center',center);
+      map.setCenter(center);
+  });
 }
 
 $(function() {
